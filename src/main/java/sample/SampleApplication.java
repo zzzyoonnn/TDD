@@ -13,14 +13,7 @@ public class SampleApplication {
         long num2 = Long.parseLong(parts[2]);
         String operator = parts[1];
 
-        long answer = switch (operator) {
-            case "+" -> num1 + num2;
-            case "-" -> num1 - num2;
-            case "*" -> num1 * num2;
-            case "/" -> num1 / num2;
-            default -> throw new RuntimeException();
-        };
-        // Calculator 파일로 빼둠
+        long answer = new Calculator().calculate(num1, operator, num2);
         System.out.println(answer);
     }
 }

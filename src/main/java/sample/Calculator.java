@@ -8,7 +8,7 @@ public class Calculator {
             case "-" -> num1 - num2;
             case "*" -> num1 * num2;
             case "/" -> num1 / num2;
-            default -> throw new RuntimeException();
+            default -> throw new InvalidOperatorException();
         };
         return answer;
     }
