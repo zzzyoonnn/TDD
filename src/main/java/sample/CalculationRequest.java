@@ -1,14 +1,32 @@
 package sample;
 
 public class CalculationRequest {
+    // VO
     private final long num1;
     private final long num2;
     private final String operator;
 
     public CalculationRequest(String[] parts) {
+        // 데이터 검증 추가
+        if (parts.length != 3) {
+            throw new BadRequestException();
+        }
+
+        String operator = parts[1];
+        if (operator.length() != 1 || isInvalidOperator(operator)) {
+            throw new InvalidOperatorException();
+        }
+
         this.num1 = Long.parseLong(parts[0]);
         this.num2 = Long.parseLong(parts[2]);
-        this.operator = parts[1];
+        this.operator = operator;
+    }
+
+    private static boolean isInvalidOperator(String operator) {
+        return !operator.equals("+") &&
+                !operator.equals("-") &&
+                !operator.equals("*") &&
+                !operator.equals("/");
     }
 
     public long getNum1() {
